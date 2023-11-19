@@ -1,0 +1,25 @@
+  body {
+    margin: 0;
+    padding: 0;
+    background:#8C8665;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  .tituloPagina{
+    color: azure;
+  }
+  .tdforms{
+    margin: 5px;
+    text-align: center;
+    border: solid 1px #fff;
+    border-radius: 5px;
+  }

@@ -1,0 +1,12 @@
+.tituloPagina{
+    align-items: center;
+
+}
+.containerHomer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+}
