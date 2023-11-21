@@ -9,6 +9,7 @@ function FormMateria() {
   const [salas, setSalas] = useState([]);
 
   const [novaMateria, setNovaMateria] = useState({
+    id: materias.length + 1,
     nomeMateria: "",
     periodoMateria: "",
     professorMateria: "",
@@ -47,18 +48,28 @@ function FormMateria() {
         novaMateria.diaSemanaMateria &&
         novaMateria.horarioMateria
       ) {
-        const novaMateriaComID = {
-          ...novaMateria,
-          id: new Date().getTime(), // Atribui um ID único à matéria
-        };
-
+        const conflitoProfessor = materias.some((materia) => {
+          return (
+            materia.nomeMateria !== novaMateria.nomeMateria &&
+            materia.professorMateria === novaMateria.professorMateria &&
+            materia.diaSemanaMateria === novaMateria.diaSemanaMateria &&
+            materia.horarioMateria === novaMateria.horarioMateria &&
+            materia.periodoMateria === novaMateria.periodoMateria
+          );
+        });
+  
+        if (conflitoProfessor) {
+          alert("O professor já está atribuído a uma matéria neste dia, horário e período.");
+          return;
+        }
+  
+        const novaMateriaComID = {...novaMateria, id: new Date().getTime(),};
+  
         const updatedMaterias = [...materias, novaMateriaComID];
         setMaterias(updatedMaterias);
-
-        // Salva a matéria no localStorage
+  
         localStorage.setItem("materia", JSON.stringify(updatedMaterias));
-
-        // Limpa o formulário após adicionar
+  
         setNovaMateria({
           nomeMateria: "",
           periodoMateria: "",
@@ -81,7 +92,7 @@ function FormMateria() {
     const materiaParaEditar = materias[index];
     setMateriaEditando(materiaParaEditar);
     setNovaMateria({
-      nomeMateria: materiaParaEditar.nome,
+      nomeMateria: materiaParaEditar.nomeMateria,
       periodoMateria: materiaParaEditar.periodoMateria,
       professorMateria: materiaParaEditar.professorMateria,
       dataInicioMateria: materiaParaEditar.dataInicioMateria,
@@ -95,6 +106,33 @@ function FormMateria() {
 
   const confirmarEdicao = () => {
     try {
+      const conflitoSala = materias.some((materia) => {
+        return (
+          materia.professorMateria === novaMateria.professorMateria &&
+          materia.diaSemanaMateria === novaMateria.diaSemanaMateria &&
+          materia.salaMateria !== novaMateria.salaMateria
+        );
+      });
+  
+      if (conflitoSala) {
+        alert("O professor já está atribuído a uma sala diferente neste dia.");
+        return;
+      }
+  
+      const conflitoProfessor = materias.some((materia) => {
+        return (
+          materia.professorMateria === novaMateria.professorMateria &&
+          materia.diaSemanaMateria === novaMateria.diaSemanaMateria &&
+          materia.horarioMateria === novaMateria.horarioMateria &&
+          materia.periodoMateria === novaMateria.periodoMateria
+        );
+      });
+  
+      if (conflitoProfessor) {
+        alert("O professor já está atribuído a uma matéria neste dia, horário e período.");
+        return;
+      }
+  
       const materiasAtualizadas = [...materias];
       materiasAtualizadas[materias.indexOf(materiaEditando)] = novaMateria;
       setMaterias(materiasAtualizadas);
@@ -115,6 +153,7 @@ function FormMateria() {
       console.error("Erro ao confirmar edição", error);
     }
   };
+  
 
   const cancelarEdicao = () => {
     setMateriaEditando(null);
@@ -172,26 +211,26 @@ function FormMateria() {
               ></input>
             </div>
             <div className="divCampoMateria">
-              <label className="labelCampoMateria">Períodos:</label>
-              <select
-                className="selectCampoMateria"
-                id="periodosMateria"
-                value={novaMateria.periodosMateria}
-                onChange={(e) =>
-                  setNovaMateria({
-                    ...novaMateria,
-                    periodoMateria: e.target.value,
-                  })
-                }
-              >
-                <option value="">Selecione um periodo</option>
-                {periodos.map((periodo) => (
-                  <option key={periodo.id} value={periodo.id}>
-                    {periodo.numeroPeriodo}
-                  </option>
-                ))}
-              </select>
-            </div>
+  <label className="labelCampoMateria">Períodos:</label>
+  <select
+    className="selectCampoMateria"
+    id="periodosMateria"
+    value={novaMateria.periodosMateria}
+    onChange={(e) =>
+      setNovaMateria({
+        ...novaMateria,
+        periodoMateria: e.target.value,
+      })
+    }
+  >
+    <option value="">Selecione um período</option>
+    {periodos.map((periodo) => (
+      <option key={periodo.id} value={periodo.id}>
+        {`Período ${periodo.numeroPeriodo} - Curso ${periodo.cursoPeriodo}`}
+      </option>
+    ))}
+  </select>
+</div>
             <div className="divCampoMateria">
               <label className="labelCampoMateria">Professor:</label>
               <select
@@ -339,7 +378,7 @@ function FormMateria() {
             <thead>
               <tr>
                 <th>Nome da Matéria</th>
-                <th>Períodos</th>
+                <th>Períodos/Curso</th>
                 <th>Professor</th>
                 <th>Data de Início</th>
                 <th>Data de Fim</th>
