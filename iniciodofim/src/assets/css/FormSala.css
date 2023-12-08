@@ -71,3 +71,11 @@
     line-height: 1;
     padding: 10px;
 }
+
+
+.btnTabela{
+  background-color: #8C8665;
+  border: none;
+  color: #ffff;
+  font-size: 15px;
+}

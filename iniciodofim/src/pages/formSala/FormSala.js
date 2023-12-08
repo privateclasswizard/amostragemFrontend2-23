@@ -180,12 +180,12 @@ function FormSala() {
                   <td className="tdforms">{sala.predio}</td>
                   <td className="tdforms">{sala.numeroCadeiras}</td>
                   <td className="tdforms">
-                    <button type="button" onClick={() => editarSala(index)}>
+                    <button className="btnTabela" type="button" onClick={() => editarSala(index)}>
                       Editar
                     </button>
                   </td>
                   <td className="tdforms">
-                    <button type="button" onClick={() => excluirSala(index)}>
+                    <button className="btnTabela" type="button" onClick={() => excluirSala(index)}>
                       Excluir
                     </button>
                   </td>

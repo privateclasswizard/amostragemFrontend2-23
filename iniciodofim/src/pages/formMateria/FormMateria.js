@@ -318,7 +318,7 @@ function FormMateria() {
                   })
                 }
               >
-                <option value="">Selecione um dia da semana</option>
+                <option>Selecione um dia da semana</option>
                 <option value="Domigo">Domigo</option>
                 <option value="Segunda">Segunda</option>
                 <option value="Terça">Terça</option>
@@ -401,12 +401,12 @@ function FormMateria() {
                   <td className="tdforms">{materia.horarioMateria}</td>
                   <td className="tdforms">{materia.salaMateria}</td>
                   <td className="tdforms">
-                    <button onClick={() => preencherCamposDeEdicao(index)}>
+                    <button className="btnTabela"  onClick={() => preencherCamposDeEdicao(index)}>
                       Editar
                     </button>
                   </td>
                   <td className="tdforms">
-                    <button onClick={() => excluirMateria(index)}>
+                    <button className="btnTabela" onClick={() => excluirMateria(index)}>
                       Excluir
                     </button>
                   </td>

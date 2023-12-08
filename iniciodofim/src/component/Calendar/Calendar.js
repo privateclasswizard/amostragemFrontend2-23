@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 import "../../assets/css/Calendar.css";
-import { Collapse } from "bootstrap";
 
 function Calendar() {
   const daysOfWeek = [
-    "Domigo",
+    "Domingo",
     "Segunda",
     "Terça",
     "Quarta",
     "Quinta",
     "Sexta",
-    "Sabado",
+    "Sábado",
   ];
+
   const months = [
     "January",
     "February",
@@ -28,6 +28,24 @@ function Calendar() {
     "December",
   ];
 
+  const diasSemanaFormMateria = [
+    "Domingo",
+    "Segunda",
+    "Terça",
+    "Quarta",
+    "Quinta",
+    "Sexta",
+    "Sábado",
+  ];
+  
+  const getIndexOfDiaSemana = (diaSemana) => {
+    return diasSemanaFormMateria.indexOf(diaSemana) - 1;
+  };
+
+
+
+  
+
   const [materias, setMaterias] = useState([]);
   useEffect(() => {
     const storedMaterias = JSON.parse(localStorage.getItem("materia")) || [];
@@ -37,12 +55,12 @@ function Calendar() {
   }, []);
 
   const [currentDate, setCurrentDate] = useState(new Date());
-
   const [selectedDay, setSelectedDay] = useState(null);
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
   };
+
   const events = {};
 
   const getDaysInMonth = (date) => {
@@ -72,14 +90,12 @@ function Calendar() {
         currentWeek = [];
       }
     }
-
     if (currentWeek.length > 0) {
       while (currentWeek.length < 7) {
         currentWeek.push("");
       }
       days.push([...currentWeek]);
     }
-
     return days;
   };
 
@@ -92,24 +108,12 @@ function Calendar() {
         events[diaSemana] = [];
       }
 
-      // Verifica se a data está dentro do intervalo de alguma matéria
       materias.forEach((materia) => {
-        const dataInicio = new Date(materia.dataInicioMateria);
-        const dataFim = new Date(materia.dataFimMateria);
         const diaSemanaMateria = materia.diaSemanaMateria;
 
-        // Verifica se a data está dentro do intervalo da matéria e se é um dia útil
-        if (
-          currentDate >= dataInicio &&
-          currentDate <= dataFim &&
-          diaSemana !== "Domingo" &&
-          currentDateString !== "" // Adiciona esta verificação
-        ) {
-          if (diaSemana === diaSemanaMateria) {
-            // Adiciona a matéria apenas se o dia da semana coincidir
-            if (!events[diaSemana].some((event) => event.id === materia.id)) {
-              events[diaSemana].push(materia);
-            }
+        if (diaSemana === diaSemanaMateria) {
+          if (!events[diaSemana].some((event) => event.id === materia.id)) {
+            events[diaSemana].push(materia);
           }
         }
       });
@@ -152,30 +156,38 @@ function Calendar() {
                 <td
                   key={colIndex}
                   onClick={() =>
-                    handleDayClick(
-                      `${format(currentDate, "dd/MM/yyyy")}-${day}`
-                    )
+                    handleDayClick(`${format(currentDate, "yyyy-MM")}-${day}`)
                   }
                 >
                   <div className="dayContainer">{day}</div>
                   <div className="materiasContainer">
-                    {day !== '' && // Verifica se o dia não está vazio
-                    events[daysOfWeek[colIndex]] &&
-                    events[daysOfWeek[colIndex]].map((materia, index) => {
+                    {materias.map((materia, index) => {
                       const dataInicio = new Date(materia.dataInicioMateria);
                       const dataFim = new Date(materia.dataFimMateria);
-                  
-                      // Verifica se o dia está dentro do intervalo de datas
-                      if (currentDate >= dataInicio && currentDate <= dataFim) {
+                      const dayDate = new Date(day);
+                      const diaSemanaCalendario = dayDate.getDay();
+                      const diaSemanaMateria = getIndexOfDiaSemana(
+                        materia.diaSemanaMateria
+                      );
+
+                      console.log(diaSemanaCalendario);
+                      console.log(diaSemanaMateria);
+                      console.log("________________");
+
+                      if (
+                        dayDate >= dataInicio &&
+                        dayDate <= dataFim &&
+                        diaSemanaCalendario === diaSemanaMateria
+                      ) {
                         return (
                           <div key={index}>
-                            {materia.nomeMateria} - {materia.horarioMateria} -
-                            {materia.professorMateria} - {materia.salaMateria}
+                            {materia.horarioMateria} - {materia.periodoMateria}{" "}
+                            -{materia.professorMateria} - {materia.salaMateria}
                           </div>
                         );
                       }
-                  
-                      return null; // Retorna null se o dia não estiver no intervalo de datas
+
+                      return null;
                     })}
                   </div>
                 </td>
@@ -188,4 +200,4 @@ function Calendar() {
   );
 }
 
-export default Calendar
+export default Calendar;

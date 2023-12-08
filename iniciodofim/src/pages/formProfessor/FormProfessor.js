@@ -163,12 +163,12 @@ function FormProfessores() {
                   <td className="tdforms">{professor.matricula}</td>
                   <td className="tdforms">{professor.telefone}</td>
                   <td className="tdforms">
-                    <button type="button" onClick={() => editarProfessor(index)}>
+                    <button className="btnTabela" type="button" onClick={() => editarProfessor(index)}>
                       Editar
                     </button>
                   </td>
                   <td className="tdforms">
-                    <button type="button" onClick={() => excluirProfessor(index)}>
+                    <button className="btnTabela" type="button" onClick={() => excluirProfessor(index)}>
                       Excluir
                     </button>
                   </td>

@@ -21,10 +21,10 @@ function Header() {
           <Link to="/" className="Links">
           <div className="logo-titulo">
             <a href="/" className="Ensala">
-              Ensala
+              Ensalamento
             </a>
             <a href="/" className="mento">
-              mento
+              Gondor
             </a>
           </div>
           </Link>

@@ -1,7 +1,4 @@
-.calendar {
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
-}
+
 
 .calendar-header {
   display: flex;
@@ -48,11 +45,11 @@
 }
 
 .calendar-table td.today {
-  background-color: #bfb47a;
+  background-color: #bfb47a31;
   color: white;
 }
 
-/* Optional: Style for the days without a number (previous and next month) */
+
 .calendar-table td:empty {
   color: #ddd;
 }
@@ -60,7 +57,23 @@
 .calendarHome {
   height: 600px;
 }
-.dayContainer{
-  display: flex;
-  width: min-content;
+.calendar-table td {
+  position: relative;
+  cursor: pointer;
 }
+
+.dayContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border-bottom: solid 1px #ffffff;
+  background-color: #bfb47a;
+  padding: 5px; 
+}
+
+.materiasContainer {
+  margin-top: 30px; 
+}
+

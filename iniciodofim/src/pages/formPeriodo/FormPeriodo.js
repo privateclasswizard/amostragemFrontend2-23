@@ -279,6 +279,7 @@ function FormPeriodo() {
                     {periodo.cursoPeriodo}</td>
                   <td className="tdforms">
                     <button
+                      className="btnTabela"
                       type="button"
                       onClick={() => preencherCamposDeEdicao(index)}
                     >
@@ -286,7 +287,7 @@ function FormPeriodo() {
                     </button>
                   </td>
                   <td className="tdforms">
-                    <button type="button" onClick={() => excluirPeriodo(index)}>
+                    <button className="btnTabela" type="button" onClick={() => excluirPeriodo(index)}>
                       Excluir
                     </button>
                   </td>

@@ -211,6 +211,7 @@ function FormCurso() {
                   <td className="tdforms">{curso.coordenador}</td>
                   <td className="tdforms">
                     <button
+                      className="btnTabela"
                       type="button"
                       onClick={() => preencherCamposDeEdicao(index)}
                     >
@@ -218,7 +219,7 @@ function FormCurso() {
                     </button>
                   </td>
                   <td className="tdforms">
-                    <button type="button" onClick={() => excluirCurso(index)}>
+                    <button className="btnTabela" type="button" onClick={() => excluirCurso(index)}>
                       Excluir
                     </button>
                   </td>

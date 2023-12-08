@@ -102,7 +102,7 @@
 }
 
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
     .btnMobile {
         display: block;
         margin-right: 10px;
@@ -119,12 +119,10 @@
     .divbutton-nav-menu p,
     .divbutton2-nav-menu p {
         line-height: initial;
-        /* Remove a altura de linha fixa */
     }
 
     .divbutton2-nav-menu img {
         margin-top: 0;
-        /* Remove a margem superior da imagem */
     }
 
     .div-logo {
