@@ -116,7 +116,6 @@
     border: 1px solid transparent;
     color: #ffff;
     width: 100%;
-    /* Modificado para ocupar 100% da largura */
     font-size: 1rem;
     font-weight: 600;
     line-height: 1;
@@ -132,14 +131,14 @@
 
 @media only screen and (max-width: 768px) {
     .conatinerFormCursos {
-        width: 90%; /* Adjust the width for smaller screens */
+        width: 90%;
     }
 
     .divComboCurso,
     .btnSubmitFormCursos,
     .btnEditarCurso,
     .btnCancelarEdicaoCurso {
-        width: 100%; /* Make these elements take the full width on smaller screens */
+        width: 100%; 
     }
 }
 .btnTabela{
