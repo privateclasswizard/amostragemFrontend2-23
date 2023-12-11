@@ -13,7 +13,6 @@ import FormMateria from './pages/formMateria/FormMateria.js'
 import FormCurso from './pages/formCurso/FormCurso.js';
 
 
-
 const router = createBrowserRouter([
   {path:"/", element:<Home />},
   {path:"/FormCurso", element:<FormCurso/>},

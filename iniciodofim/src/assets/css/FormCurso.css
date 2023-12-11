@@ -75,9 +75,6 @@
 }
 
 
-
-
-
 .section1FormCursos {
     display: flex;
     align-items: center;
@@ -150,4 +147,5 @@
     border: none;
     color: #ffff;
     font-size: 15px;
+
 }

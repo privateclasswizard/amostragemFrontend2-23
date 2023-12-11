@@ -1,17 +1,20 @@
 import React from "react";
 import Header from "../../component/Header/Header";
-import Table from "../../component/Calendar/Calendar.js";
+import Calendar from "../../component/Calendar/Calendar.js";
+import Footer from "../../component/footer/Footer.js";
+import "../../assets/css/home.css"
 
 function Home() {
   return (
     <>
-      <Header />
+      <Header/>
       <section>
         <div className="containerHomer">
           <h1 className="tituloPagina">Calendario Semanal</h1>
-          <Table></Table>
+          <Calendar className="Calendar"></Calendar>
           </div>
       </section>
+      <Footer/>
     </>
   );
 }

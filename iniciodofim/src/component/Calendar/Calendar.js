@@ -37,14 +37,10 @@ function Calendar() {
     "Sexta",
     "Sábado",
   ];
-  
+
   const getIndexOfDiaSemana = (diaSemana) => {
     return diasSemanaFormMateria.indexOf(diaSemana) - 1;
   };
-
-
-
-  
 
   const [materias, setMaterias] = useState([]);
   useEffect(() => {
@@ -132,6 +128,16 @@ function Calendar() {
     );
   };
 
+  const handleCellClick = (e) => {
+    const cell = e.target;
+    cell.classList.add("cell-clicked");
+
+    // Remover a classe após a animação
+    setTimeout(() => {
+      cell.classList.remove("cell-clicked");
+    }, 300); // Ajuste o valor conforme a duração da animação
+  };
+
   return (
     <div className="calendar">
       <div className="calendar-header">
@@ -149,49 +155,78 @@ function Calendar() {
             ))}
           </tr>
         </thead>
+
         <tbody className="calendarHome">
           {getDaysInMonth(currentDate).map((week, rowIndex) => (
             <tr key={rowIndex}>
-              {week.map((day, colIndex) => (
-                <td
-                  key={colIndex}
-                  onClick={() =>
-                    handleDayClick(`${format(currentDate, "yyyy-MM")}-${day}`)
-                  }
-                >
-                  <div className="dayContainer">{day}</div>
-                  <div className="materiasContainer">
-                    {materias.map((materia, index) => {
-                      const dataInicio = new Date(materia.dataInicioMateria);
-                      const dataFim = new Date(materia.dataFimMateria);
-                      const dayDate = new Date(day);
-                      const diaSemanaCalendario = dayDate.getDay();
-                      const diaSemanaMateria = getIndexOfDiaSemana(
-                        materia.diaSemanaMateria
-                      );
+              {week.map((day, colIndex) => {
+                const dayDate = new Date(day);
 
-                      console.log(diaSemanaCalendario);
-                      console.log(diaSemanaMateria);
-                      console.log("________________");
+                // Verifica se há matérias agendadas para o dia atual
+                const hasMaterias = materias.some((materia) => {
+                  const dataInicio = new Date(materia.dataInicioMateria);
+                  const dataFim = new Date(materia.dataFimMateria);
+                  const diaSemanaCalendario = dayDate.getDay();
+                  const diaSemanaMateria = getIndexOfDiaSemana(
+                    materia.diaSemanaMateria
+                  );
 
-                      if (
-                        dayDate >= dataInicio &&
-                        dayDate <= dataFim &&
-                        diaSemanaCalendario === diaSemanaMateria
-                      ) {
-                        return (
-                          <div key={index}>
-                            {materia.horarioMateria} - {materia.periodoMateria}{" "}
-                            -{materia.professorMateria} - {materia.salaMateria}
-                          </div>
-                        );
-                      }
+                  return (
+                    dayDate >= dataInicio &&
+                    dayDate <= dataFim &&
+                    diaSemanaCalendario === diaSemanaMateria
+                  );
+                });
 
-                      return null;
-                    })}
-                  </div>
-                </td>
-              ))}
+                return (
+                  <td
+                    key={colIndex}
+                    onClick={() =>
+                      handleDayClick(`${format(currentDate, "yyyy-MM")}-${day}`)
+                    }
+                  >
+                    <div className="dayContainer">{day}</div>
+
+                    {/* Renderiza materiasContainer somente se houver matérias agendadas */}
+                    {hasMaterias && (
+                      <div className="materiasContainer">
+                        {materias.map((materia, index) => {
+                          const dataInicio = new Date(
+                            materia.dataInicioMateria
+                          );
+                          const dataFim = new Date(materia.dataFimMateria);
+                          const dayDate = new Date(day);
+                          const diaSemanaCalendario = dayDate.getDay();
+                          const diaSemanaMateria = getIndexOfDiaSemana(
+                            materia.diaSemanaMateria
+                          );
+
+                          console.log(diaSemanaCalendario);
+                          console.log(diaSemanaMateria);
+                          console.log("________________");
+
+                          if (
+                            dayDate >= dataInicio &&
+                            dayDate <= dataFim &&
+                            diaSemanaCalendario === diaSemanaMateria
+                          ) {
+                            return (
+                              <div key={index}>
+                                {materia.horarioMateria} -{" "}
+                                {materia.periodoMateria} -
+                                {materia.professorMateria} -{" "}
+                                {materia.salaMateria}
+                              </div>
+                            );
+                          }
+
+                          return null;
+                        })}
+                      </div>
+                    )}
+                  </td>
+                );
+              })}
             </tr>
           ))}
         </tbody>

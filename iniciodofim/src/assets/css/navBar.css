@@ -128,4 +128,12 @@
     .div-logo {
         padding-left: 0px;
     }
+    .Ensala,.mento{
+        font-size: 18px;
+    }
+    .sidebar{
+        position: relative;
+        
+    }
+    
 }

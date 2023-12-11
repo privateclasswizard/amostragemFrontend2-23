@@ -25,7 +25,6 @@ code {
   border-radius: 5px;
 }
 
-/* Responsive styles */
 @media only screen and (max-width: 768px) {
   .tituloPagina {
     font-size: 1.5em; /* Adjust the font size for smaller screens */

@@ -2,11 +2,21 @@
     align-items: center;
 
 }
+
 .containerHomer{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    
     flex-direction: column;
     height: auto;
     width: auto;
+}
+
+.Calendar{
+    margin: 10px;
+}
+@media (max-width: 768px) {
+    .containerHomer {
+        padding: 10px; /* Adapte conforme necessário */
+    }
 }

@@ -31,7 +31,7 @@ function Header() {
           </div>
         </div>
         <button className="btnMobile" onClick={ShowSiderBar}>
-        {sidebar && <Sidebar active={setSidebar}/>} 
+        {sidebar && <Sidebar className="sidebar" active={setSidebar}/>} 
         <img src={btnmenu}/> </button>
       </nav>
     </header>
