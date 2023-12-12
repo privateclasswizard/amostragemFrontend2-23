@@ -162,8 +162,8 @@ function Calendar() {
               {week.map((day, colIndex) => {
                 const dayDate = new Date(day);
 
-                // Verifica se há matérias agendadas para o dia atual
-                const hasMaterias = materias.some((materia) => {
+                // Filtra as matérias agendadas para o dia atual
+                const materiasDoDia = materias.filter((materia) => {
                   const dataInicio = new Date(materia.dataInicioMateria);
                   const dataFim = new Date(materia.dataFimMateria);
                   const diaSemanaCalendario = dayDate.getDay();
@@ -187,41 +187,15 @@ function Calendar() {
                   >
                     <div className="dayContainer">{day}</div>
 
-                    {/* Renderiza materiasContainer somente se houver matérias agendadas */}
-                    {hasMaterias && (
+                    {materiasDoDia.length > 0 && (
                       <div className="materiasContainer">
-                        {materias.map((materia, index) => {
-                          const dataInicio = new Date(
-                            materia.dataInicioMateria
-                          );
-                          const dataFim = new Date(materia.dataFimMateria);
-                          const dayDate = new Date(day);
-                          const diaSemanaCalendario = dayDate.getDay();
-                          const diaSemanaMateria = getIndexOfDiaSemana(
-                            materia.diaSemanaMateria
-                          );
-
-                          console.log(diaSemanaCalendario);
-                          console.log(diaSemanaMateria);
-                          console.log("________________");
-
-                          if (
-                            dayDate >= dataInicio &&
-                            dayDate <= dataFim &&
-                            diaSemanaCalendario === diaSemanaMateria
-                          ) {
-                            return (
-                              <div key={index}>
-                                {materia.horarioMateria} -{" "}
-                                {materia.periodoMateria} -
-                                {materia.professorMateria} -{" "}
-                                {materia.salaMateria}
-                              </div>
-                            );
-                          }
-
-                          return null;
-                        })}
+                        {materiasDoDia.map((materia, index) => (
+                          <div className="materias" key={index}>
+                            {"-"} {"  "}
+                            {materia.horarioMateria} - {materia.periodoMateria}{" "}
+                            - {materia.professorMateria} - {materia.salaMateria}
+                          </div>
+                        ))}
                       </div>
                     )}
                   </td>
