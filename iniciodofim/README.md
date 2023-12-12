@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+Trabalho Prático
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Objetivos
+Exercitar os seguintes conceitos trabalhados no desafio:
+   - Gestão de projeto de software
+   - Ambiente de desenvolvimento
+   - Desenvolvimento com React
+Enunciado
+Sistema para cadastrar entidades para um controle de ensalamento de professores no Unisales.
 
-## Available Scripts
+Atividades
+Construir uma interface que promova solução ao problema descrito.
+Para cada caso sera criado uma tela de CRUD e uma lista dos dados cadastrados.
 
-In the project directory, you can run:
+Segue dicionário de dados para cada tela:
+    Cadastro de Curso
+        Nome do curso
+        Data inicio de início do curso
+        Nome do Coordenador do curso
+    Cadastro de Período
+        Numero do periodo (3 periodo)
+        Semestre/ano do periodo (2/2023)
+        data inicio
+        data fim
+        turno (campo multivalorado: matutino, vespertino ou noturno)
+        Curso (campo relacionado ao cadastro anterior)
+    Cadastro de Professores
+        nome do professor 
+        matrícula (número inteiro)
+        telefone celular
+    Cadastro de Salas
+        andar
+        número
+        prédio
+        número de cadeiras
+    Cadastro de Desafio(matérias)
+        nome do desafio
+        períodos (1:N com o lista de períodos)
+        professor(n:1 um desafio está relacionado apenas com um professor)
+        data início
+        data fim
+        dia da semana
+        horário
+        sala(selecionar a lista de salas que foi cadastrada)
+    Calendário de horários
+        apenas para consulta 
+        O calendário só precisa funcionar para o mês Novembro
+        deve exibir o horário, o professor, a sala por dia da semana dentro do calendário
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+O sistema tem os seguintes requisitos:
+    Uma interface centralizada com menu para acessar as telas
+    Deve ser criado CRUD’s para todas as entidades
+    Deve ser cria lista para cada cadastro onde será exibido o que foi cadastrado
+    Os dados devem ser persistidos no localstorage no formato json
+    Usar apenas react.js e React Bootstrap
